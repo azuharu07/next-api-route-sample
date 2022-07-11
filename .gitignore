@@ -35,4 +35,4 @@ yarn-error.log*
 *.tsbuildinfo
 
 # graphql-codegen
-src/graphql/types.ts
+src/types/generated-graphql.ts

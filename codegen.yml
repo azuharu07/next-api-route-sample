@@ -1,7 +1,7 @@
 overwrite: true
-schema: "src/apollo/server/schema.graphql"
+schema: "./src/graphql/schema.graphql"
 generates:
-  src/graphql/types.ts:
+  ./src/types/generated-graphql.ts:
     plugins:
       - "typescript"
       - "typescript-operations"

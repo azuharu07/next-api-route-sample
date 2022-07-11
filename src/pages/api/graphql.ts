@@ -1,19 +1,17 @@
-import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
-import { loadSchemaSync } from "@graphql-tools/load";
-import { resolvers } from "apollo/server/resolvers";
+import { resolvers } from "graphql/resolvers";
 import { ApolloServer } from "apollo-server-micro"
-import { addResolversToSchema } from "@graphql-tools/schema";
 import Cors from "micro-cors"
+import typeDefs from "graphql/schema.graphql"
+import { ApolloServerPluginInlineTraceDisabled, ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
 const cors = Cors()
 
-const schema = loadSchemaSync(("src/apollo/server/schema.graphql"), {
-  loaders: [new GraphQLFileLoader]
-})
-
-const schemaWithResolvers = addResolversToSchema({ schema, resolvers })
-
-const apolloServer = new ApolloServer({ schema: schemaWithResolvers });
+const isDevelopment = process.env.NODE_ENV === "development"
+const apolloServer = new ApolloServer({
+  typeDefs, resolvers, introspection: isDevelopment, plugins: [
+    isDevelopment ? ApolloServerPluginLandingPageGraphQLPlayground() : ApolloServerPluginInlineTraceDisabled()
+  ]
+});
 
 const startServer = apolloServer.start()
 

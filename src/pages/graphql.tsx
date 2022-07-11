@@ -1,7 +1,8 @@
 import { gql } from "@apollo/client";
 import { apolloClient } from "apollo/client";
-import { Hello } from "graphql/types";
+
 import { NextPage } from "next";
+import { Hello } from "types/generated-graphql";
 
 export const getServerSideProps = async () => {
   const result = await apolloClient.query({
