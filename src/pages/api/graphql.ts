@@ -2,14 +2,14 @@ import { resolvers } from "graphql/resolvers";
 import { ApolloServer } from "apollo-server-micro"
 import Cors from "micro-cors"
 import typeDefs from "graphql/schema.graphql"
-import { ApolloServerPluginInlineTraceDisabled, ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import { ApolloServerPluginLandingPageDisabled, ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
 const cors = Cors()
 
 const isDevelopment = process.env.NODE_ENV === "development"
 const apolloServer = new ApolloServer({
   typeDefs, resolvers, introspection: isDevelopment, plugins: [
-    isDevelopment ? ApolloServerPluginLandingPageGraphQLPlayground() : ApolloServerPluginInlineTraceDisabled()
+    isDevelopment ? ApolloServerPluginLandingPageGraphQLPlayground() : ApolloServerPluginLandingPageDisabled()
   ]
 });
 
