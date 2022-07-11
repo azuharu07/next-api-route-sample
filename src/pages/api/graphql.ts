@@ -7,7 +7,7 @@ import Cors from "micro-cors"
 
 const cors = Cors()
 
-const schema = loadSchemaSync(("apollo/server/schema.graphql"), {
+const schema = loadSchemaSync(("src/apollo/server/schema.graphql"), {
   loaders: [new GraphQLFileLoader]
 })
 
