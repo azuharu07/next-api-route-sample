@@ -9,7 +9,7 @@ const cors = Cors()
 const isDevelopment = process.env.NODE_ENV === "development"
 const apolloServer = new ApolloServer({
   typeDefs, resolvers, introspection: isDevelopment, plugins: [
-    isDevelopment ? ApolloServerPluginLandingPageGraphQLPlayground() : ApolloServerPluginLandingPageDisabled()
+    ApolloServerPluginLandingPageDisabled()
   ]
 });
 
