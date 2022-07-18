@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { apolloClient } from "apollo/client";
+import { apolloClient } from "lib/apolloClient";
 
 import { NextPage } from "next";
 import { Hello } from "types/generated-graphql";
@@ -19,9 +19,6 @@ export const getServerSideProps = async () => {
   };
 };
 
-const GraphQlPage: NextPage<Hello> = ({ message }) => {
-  console.log("message", message);
-  return <div>{message}</div>;
-};
+const GraphQlPage: NextPage<Hello> = ({ message }) => <div>{message}</div>;
 
 export default GraphQlPage;

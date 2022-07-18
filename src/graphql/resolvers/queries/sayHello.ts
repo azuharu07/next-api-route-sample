@@ -1,0 +1,1 @@
+export const sayHello = () => ({ message: "Hello World" })

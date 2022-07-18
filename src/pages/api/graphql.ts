@@ -3,13 +3,15 @@ import { ApolloServer } from "apollo-server-micro"
 import Cors from "micro-cors"
 import typeDefs from "graphql/schema.graphql"
 import { ApolloServerPluginLandingPageDisabled, ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import { createContext } from "graphql/context";
 
 const cors = Cors()
 
 const isDevelopment = process.env.NODE_ENV === "development"
 const apolloServer = new ApolloServer({
-  typeDefs, resolvers, introspection: isDevelopment, plugins: [
-    ApolloServerPluginLandingPageDisabled()
+  typeDefs, resolvers,
+  context: createContext, introspection: isDevelopment, plugins: [
+    isDevelopment ? ApolloServerPluginLandingPageGraphQLPlayground() : ApolloServerPluginLandingPageDisabled()
   ]
 });
 
