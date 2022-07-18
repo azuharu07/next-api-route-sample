@@ -1,4 +1,3 @@
-overwrite: true
 schema: "./src/graphql/schema.graphql"
 generates:
   ./src/types/generated-graphql.ts:
@@ -6,3 +5,10 @@ generates:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-apollo"
+      - "typescript-resolvers"
+    config:
+      mapperTypeSuffix: Model
+      mappers:
+        Post: "@prisma/client/index.d#Post"
+        User: "@prisma/client/index.d#User"
+      contextType: graphql/context#Context
